@@ -15,8 +15,26 @@ if(mysqli_connect_errno())
 }
 
 //结果集示例
-$sql = "show databases";
-$result = $mysqli->query($sql);
-$databases = $result->fetch_all(MYSQLI_ASSOC);
-var_dump($databases);
+$sql = "select * from hh";
+if ($res = $mysqli->query($sql)) { 
+    // $data = $res->fetch_all(MYSQLI_ASSOC);
+    $data = $res->fetch_row();
+    $visit = $data[0];    
+}
+
+echo $visit;
+
+$sql = "update hh set id =".($visit+1);
+echo $sql;
+
+if ($res = $mysqli->query($sql)) { 
+    echo "success";
+}
+
+// $sql2 = "show databases";
+// $result = $mysqli->query($sql2);
+// $databases = $result->fetch_all(MYSQLI_ASSOC);
+// var_dump($databases);
+
+
 $mysqli->close();

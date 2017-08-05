@@ -2,6 +2,8 @@
 docker build -t my-php-app .
 docker run -p 80:80 -v $(pwd)/src/:/var/www/html/ --rm --name my-running-app my-php-app
 #mysql
-bogon:lamp liushengyin$ docker run --name some-mysql -e MYSQL_ROOT_PASSWORD=root -e MYSQL_DATABASE=app -d --rm mysql
+docker run --name some-mysql -e MYSQL_ROOT_PASSWORD=root -e MYSQL_DATABASE=app -d --rm mysql
 #php-apache-mysql
 docker run --name some-app --link some-mysql:mysql -p 80:80 -v "$PWD"/src:/var/www/html --rm my-php-app
+#mysql volume
+docker run --name some-mysql -v $(pwd)/db:/var/lib/mysql -e MYSQL_ROOT_PASSWORD=root -e MYSQL_DATABASE=app -p 3306:3306 -d --rm mysql
