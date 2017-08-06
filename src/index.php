@@ -1,7 +1,7 @@
 <?php
 echo "hello world";
 $mysql_conf = array(
-    'host'    => 'mysql', 
+    'host'    => 'db', 
     'db'      => 'app', 
     'db_user' => 'root', 
     'db_pwd'  => 'root', 
