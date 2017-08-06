@@ -19,7 +19,14 @@ services:
       PMA_PASSWORD: "root"
   php:
     image: my-php-app
-    ports:
-      - "80:80"
     volumes:
-      - ./src/:/var/www/html/
+      - ./src/:/var/www/html:ro
+  web:
+    image: nginx
+    ports:
+      - "8080:80"
+    depends_on:
+      - php
+    volumes:
+      - ./src:/usr/share/nginx/html:ro
+      - ./nginx/:/etc/nginx/conf.d

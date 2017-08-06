@@ -1,6 +1,5 @@
-FROM php:7.0-apache
+FROM php:7.0-fpm
 
 RUN docker-php-ext-install pdo_mysql mysqli
 
-COPY config/php.ini /usr/local/etc/php/
-# COPY src/ /var/www/html/
+COPY php.ini /usr/local/etc/php/
