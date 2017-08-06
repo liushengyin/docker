@@ -1,5 +1,6 @@
 <?php
 echo "hello world";
+echo "<br/>";
 $mysql_conf = array(
     'host'    => 'db', 
     'db'      => 'app', 
@@ -23,12 +24,13 @@ if ($res = $mysqli->query($sql)) {
 }
 
 echo $visit;
+echo "<br/>";
 
 $sql = "update hh set id =".($visit+1);
-echo $sql;
 
 if ($res = $mysqli->query($sql)) { 
     echo "success";
+    echo "<br/>";
 }
 
 // $sql2 = "show databases";
@@ -36,5 +38,15 @@ if ($res = $mysqli->query($sql)) {
 // $databases = $result->fetch_all(MYSQLI_ASSOC);
 // var_dump($databases);
 
-
 $mysqli->close();
+
+//连接本地的 Redis 服务
+$redis = new Redis();
+$redis->connect("redis", 6379);
+echo "Connection to server sucessfully";
+echo "<br/>";
+//设置 redis 字符串数据
+$redis->set("test", "Redis tutorial");
+// 获取存储的数据并输出
+echo "Stored string in redis:: " . $redis->get("test");
+$redis->close();

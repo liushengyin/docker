@@ -17,6 +17,12 @@ services:
       PMA_HOST: "db"
       PMA_USER: "root"
       PMA_PASSWORD: "root"
+  redis:
+    image: redis
+    ports:
+      - "6379:6379"
+    volumes:
+      - ./redis/data:/data
   php:
     image: my-php-app
     volumes:

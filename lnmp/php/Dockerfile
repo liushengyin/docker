@@ -1,5 +1,7 @@
 FROM php:7.0-fpm
 
-RUN docker-php-ext-install pdo_mysql mysqli
+RUN pecl install redis-3.1.0 \
+	&& docker-php-ext-enable redis \
+    && docker-php-ext-install pdo_mysql mysqli
 
 COPY php.ini /usr/local/etc/php/
