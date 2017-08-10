@@ -23,6 +23,12 @@ services:
       - "6379:6379"
     volumes:
       - ./redis/data:/data
+  mongo:
+    image: mongo
+    ports:
+      - "27017:27017"
+    volumes:
+      - ./mongodb/data:/data/db
   php:
     image: my-php-app
     volumes:
